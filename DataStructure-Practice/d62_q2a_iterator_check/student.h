@@ -5,8 +5,10 @@ template <typename T>
 bool CP::vector<T>::valid_iterator(CP::vector<T>::iterator it) const {
   //write your code here
   if(mSize==0) return false;
-  return true;
-
+  for(auto i = begin();i!=end();i++){
+    if(i == it) return true;
+  }
+  return false;
 }
 
 #endif
