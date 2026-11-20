@@ -2,26 +2,29 @@
 #define __STACK_STUDENT_H__
 #include "stack.h"
 
+#include<iostream>
+
 template <typename T>
 void CP::stack<T>::mitosis(int a, int b)
 {
-    size_t k = b - a + 1;
-    size_t newSize = mSize + k;
+    a = mSize-1-a;
+    b = mSize-1-b;
+    size_t k = a-b+1;
+    if(mSize + k > mCap) expand(mSize + k);
 
-    if (newSize > mCap)
-        expand(std::max(newSize, mCap * 2));   // amortized, keeps old elements in place
-
-    size_t r = mSize, w = newSize;
-    for (int i = 0; i < a; i++) arr_move: mData[--w] = mData[--r];
-
-    // middle k elements twice each
-    for (size_t i = 0; i < k; i++) {
-        T v = mData[--r];
-        mData[--w] = v;
-        mData[--w] = v;
+    for(int i=mSize-1+k;i>a+k;i--){
+        mData[i] = mData[i-k];
     }
 
-    mSize = newSize;
+    size_t w = a+k;
+    for(int i=a;i>=b;i--){
+        mData[w] = mData[i];
+        mData[w-1] = mData[i];
+        w-=2;
+    }
+
+    mSize = mSize + k;
+    mCap = mSize;
 }
 
 #endif

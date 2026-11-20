@@ -22,7 +22,7 @@ int main() {
     m1[x] = -x;
   }
 
-  int val = 60;
+  int val = 70;
   printf("The \"original\"  tree\n");
   m1.print();
   m2 = m1.split(val);

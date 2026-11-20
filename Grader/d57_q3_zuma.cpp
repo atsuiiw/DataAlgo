@@ -3,40 +3,39 @@ using namespace std;
 using ll = long long;
 
 const int N = 1010;
-list<int> ls;
 
 int main(){
     cin.tie(nullptr)->sync_with_stdio(0);
-    int n,k,v; cin>>n>>k>>v;
-    for(int i=0;i<n;i++){
-        int x; cin>>x;
-        ls.push_back(x);
+    int n,m,k; cin>>n>>m>>k;
+    list<int> ls;
+    for(int i=1;i<=n;i++){
+        int p; cin>>p;
+        ls.push_back(p);
     }
 
     auto it = ls.begin();
-    it = next(it,k);
-    ls.insert(it,v);
+    it = next(it,m);
+    ls.insert(it,k);
     it = next(it,-1);
 
-    int cur = v;
+    int cur = k;
+    
     while(1){
-        int cntl=0,cntr=0;
-        while(*next(it,-cntl) == cur) cntl++;
-        while(*next(it,cntr) == cur) cntr++;
+        int L = 0, R = 0;
+        while(*next(it,-L) == cur) L++;
+        while(*next(it,R) == cur) R++;
         
-        // cout<<*it<<' '<<cur<<' '<<cntl<<' '<<cntr<<'\n';
-        // if the length is less than 3 then no breaking should happen no more
-        if(ls.empty() || cntr+cntl-1 < 3) break;
-        auto tmp= next(it,-cntl+1);
-        for(int i=0;i<cntl+cntr-1;i++){
-            tmp = ls.erase(tmp);
-        }
-        if(ls.empty()) break;
-        it = next(tmp,-1);
-        cur = *it;
-        // break;
-    }
+        if(ls.empty() || R+L-1 < 3) break;
 
+        it = next(it,-L+1);
+        for(int i=0;i<R+L-1;i++){
+            it = ls.erase(it);
+        }
+
+        if(ls.empty()) break;
+        it = next(it,-1);
+        cur = * it;
+    }
     if(!ls.empty()) for(auto x:ls) cout<<x<<' ';
 
     return 0;

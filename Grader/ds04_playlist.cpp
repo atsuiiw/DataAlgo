@@ -1,6 +1,4 @@
-// *
-// TASK: ds55b_quiz1_photolist
-// */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -195,39 +193,14 @@ class list
 
     void reorder(int pos,std::vector<int> selected) {
       //write your code only here
+      int cnt = mSize-1, k = selected.size()-1;
+      iterator it = mHeader->prev;
+      iterator ins = mHeader->next;
+      for(int i=0;i<pos;i++) ins = ins.ptr->next;
 
-      CP::list<T> tmp;
-      iterator it = begin();
-
-      int newPos = pos;
-      int cur = 0, cnt = 0;
-      while(cur!=selected.size()){
-        if(cnt==selected[cur]){
-          tmp.push_back(it.ptr->data);
-          it = erase(it);
-          if(selected[cur]<=pos) newPos--;
-          cur++;
-          // std::cout<<cnt<<' ';
-        }
-        else it++;
-        cnt++;
-      }
 
       // std::cout<<newPos<<'\n';
-
-      // inserting
-      iterator temp = tmp.begin();
-      iterator position = begin();
-
-      for(size_t i=0;i<newPos;i++) position++;
-
-      // std::cout<<"The data being moved are - ";
-      while(temp!=tmp.end()){
-        // std::cout<<temp.ptr->data<<' ';
-        position = insert(position, temp.ptr->data);
-        position++;
-        temp++;
-      }
+      // for(auto x:vec) std::cout<<x<<' ';
       // std::cout<<'\n';
     }
 

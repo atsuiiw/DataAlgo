@@ -25,7 +25,7 @@ int main() {
     l.push_back(tmp);
   }
 
-  cin >> m;
+  cin>>m;
 
   //read m lists
   CP::list<CP::list<int>> ls;

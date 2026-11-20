@@ -2,25 +2,35 @@
 using namespace std;
 using ll = long long;
 
-const int N = 1010;
-unordered_map<string,int> mp;
-vector<pair<int,string>> vec;
+struct A{
+    int score;
+    string s;
+    bool operator < (const A&o) const{
+        return score > o.score;
+    }
+};
 
 int main(){
     cin.tie(nullptr)->sync_with_stdio(0);
-    int n,m; cin>>n>>m;
+    
+    unordered_map<string,int> mp;
+    vector<int> vec;
+
+    int n,k; cin>>n>>k;
     for(int i=1;i<=n;i++){
         string s; cin>>s;
         mp[s]++;
     }
-    for(auto x:mp){
-        vec.push_back({-x.second,x.first});
-    }
-    sort(vec.begin(),vec.end());
-    // for(auto x:vec) cout<<-x.first<<' '<<x.second<<'\n';
-    cout<<-vec[min((int)vec.size()-1,m-1)].first;
-    
-    vector<int> temp = {1,2,3,4,5,6,7,8};
-    
+
+    // for(auto x:mp){
+    //     cout<<x.first<<' '<<x.second<<'\n';
+    // }
+
+    for(auto x:mp) vec.push_back(x.second);
+    sort(vec.begin(),vec.end(),greater<int>());
+    // vec.erase(unique(vec.begin(),vec.end()),vec.end());
+    // for(auto x:vec) cout<<x<<' ';
+    if(vec.size() < k) cout<<vec[vec.size()-1];
+    else cout<<vec[k-1];
     return 0;
 }

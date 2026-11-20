@@ -4,10 +4,8 @@ using namespace std;
 
 int main()
 {
-
     int q; cin>>q;
     while(q--){
-
         Tree t1;
         Tree t2;
         int n, m, x;

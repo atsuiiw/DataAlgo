@@ -8,9 +8,9 @@ std::set<int> destroyed;
 
 int main() {
   std::ios_base::sync_with_stdio(false);std::cin.tie(nullptr);
-  int n,q;
+  int n;
   CP::map_bst<int,int> m,left,right;
-  std::cin >> q >> n;
+  std::cin >> n;
   int k;
   for (int i = 0;i < n;i++) {
     std::cin >> k;

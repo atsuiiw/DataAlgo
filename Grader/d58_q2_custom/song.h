@@ -22,12 +22,12 @@ class Song {
       return out << "Artist: " << s.artist << " Title: " << s.title << " count: " << s.count;
     }
 
-    bool operator < (const Song&o) const {
+    bool operator < (const Song&o) const{
       if(artist != o.artist) return artist > o.artist;
       if(title != o.title) return title > o.title;
       return count > o.count;
     }
-    
+
     bool operator > (const Song&o) const{
       if(count != o.count) return count < o.count;
       if(artist != o.artist) return artist > o.artist;
@@ -36,17 +36,10 @@ class Song {
 
 };
 
-struct Comparator {
-    bool operator()(Song a, Song b) const
-    {
-      return a>b;
-    }
-};
-
 
 //  you have to write something below this line 
 //  you *MIGHT* have to change the declaration of pq1 and pq2
 CP::priority_queue<Song> pq1;
-CP::priority_queue<Song,Comparator> pq2;
+CP::priority_queue<Song,greater<Song>> pq2;
 
 #endif

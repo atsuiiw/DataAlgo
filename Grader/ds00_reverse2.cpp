@@ -2,13 +2,15 @@
 #include <vector>
 using namespace std;
 void reverse(vector<int> &v,vector<int>::iterator a,vector<int>::iterator b) {
-    auto st = a-v.begin();
-    auto en = b-v.begin()-1;
-    if(st==en) return ;
-    for(int i=st;i<(st+en+1)/2;i++) swap(v[i],v[en-(i-st)]);
+    
+    int l = a-v.begin();
+    int r = b-v.begin()-1;
+    for(int i=l;i<=(l+r)/2;i++){
+        swap(v[i],v[r-(i-l)]);
+    }
 }
 int main() {
-//read input
+    //read input
     int n,a,b;
     cin >> n;
     vector<int> v;

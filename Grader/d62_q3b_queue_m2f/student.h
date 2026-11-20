@@ -6,12 +6,12 @@
 
 template <typename T>
 void CP::queue<T>::move_to_front(size_t pos) {
-    if(pos>=mSize) return ;
-    T temp = mData[(mFront + pos) % mCap];
-    for(size_t i=pos;i>0;i--){
-        mData[(mFront + i)%mCap] = mData[(mFront + i - 1 + mCap)%mCap];
+    if(pos==0 || pos>=mSize) return ;
+    T tmp = mData[(mFront + pos) % mCap];
+    for(int i=pos;i>0;i--){
+        mData[(mFront+i) % mCap] = mData[(mFront + i - 1 + mCap) % mCap];
     }
-    mData[mFront] = temp;
+    mData[mFront] = tmp;
 }
 
 #endif

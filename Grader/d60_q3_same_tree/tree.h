@@ -1,6 +1,5 @@
 #ifndef TREE_H_INCLUDED
 #define TREE_H_INCLUDED
-#include<iostream>
 
 class Tree{
     class Node{
@@ -36,26 +35,22 @@ public:
         insertAt(mRoot, x);
     }
     bool isSameBinaryTree(Tree& t) {
-        // debug(t.mRoot);
-        // std::cout<<'\n';
-        return dfs(mRoot, t.mRoot);
+        return isSame(mRoot,t.mRoot);
     }
 
-    void debug(Node* A){
-        std::cout<<A->data<<' ';
-        if(A->left == NULL && A->right == NULL) return ;
-        if(A->left != NULL) debug(A->left);
-        if(A->right != NULL) debug(A->right);
-    }
-
-    bool dfs(Node* A, Node* B) {
-        if(A->data != B->data) return false;
+    bool isSame(Node* a, Node* b){
+        if(a->data != b->data) return false;
         bool ch = true;
-        // std::cout<<A->data<<' ';
-        // std::cout<<B->data<<' ';
-        
-        if(A->left != NULL) ch &= dfs(A->left, B->left);
-        if(A->right != NULL) ch &= dfs(A->right, B->right);
+        if(a->left != NULL){
+            if(b->left != NULL) ch &= isSame(a->left,b->left);
+            if(b->left == NULL) return false;
+        }
+        if(a->left == NULL && b->left != NULL) return false;
+        if(a->right != NULL){
+            if(b->right != NULL) ch &= isSame(a->right,b->right);
+            if(b->right == NULL) return false;
+        }
+        if(a->right == NULL && b->right != NULL) return false;
         return ch;
     }
 

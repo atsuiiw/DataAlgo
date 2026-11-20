@@ -5,9 +5,12 @@ template <typename KeyT,
           typename MappedT,
           typename CompareT>
 size_t CP::map_bst<KeyT,MappedT,CompareT>::process(node* ptr) const {
+  //you may write additional code here
   if(ptr->left == NULL && ptr->right == NULL) return 0;
-  size_t cnt = 0;
-  if((ptr->left == NULL && ptr->right != NULL) || (ptr->left != NULL && ptr->right == NULL)) cnt = 1;
+  int cnt = 0;
+  if(ptr->left == NULL && ptr->right != NULL) cnt = 1;
+  if(ptr->left != NULL && ptr->right == NULL) cnt = 1;
+
   if(ptr->left != NULL) cnt += process(ptr->left);
   if(ptr->right != NULL) cnt += process(ptr->right);
   return cnt;
