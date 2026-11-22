@@ -8,14 +8,16 @@ void CP::list<T>::merge(CP::list<CP::list<T>> &ls) {
   for(auto& x:ls){
     if(x.size()==0) continue;
     iterator h = x.mHeader;
+    node* st = h.ptr->next;
+    node* en = h.ptr->prev;
 
     // Connect last node to the first node of x
-    mHeader->prev->next = h.ptr->next;
-    h.ptr->next->prev = mHeader->prev;
+    mHeader->prev->next = st;
+    st->prev = mHeader->prev;
 
     // Connect last node of x to head
-    mHeader->prev = h.ptr->prev;
-    h.ptr->prev->next = mHeader;
+    mHeader->prev = en;
+    en->next = mHeader;
 
     mSize += x.mSize;
     x.mHeader->next = x.mHeader;

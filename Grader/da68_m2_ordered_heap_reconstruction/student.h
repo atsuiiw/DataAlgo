@@ -17,7 +17,7 @@ std::vector<int> CP::priority_queue<T, Comp>::unordered_index() {
     if(2*u+1 >= mSize) continue; // leaf node
     if(2*u+2 >= mSize) continue; // only have left child
     if(mLess(mData[2*u+1],mData[2*u+2])){
-      std::swap(mData[2*u+1],mData[2*u+2]);
+      // std::swap(mData[2*u+1],mData[2*u+2]);œ
       v.push_back(u);
     }
     qu.push(2*u+1);
