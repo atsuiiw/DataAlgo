@@ -7,7 +7,6 @@ int deg[N];
 int cnt[N];
 
 int main(){
-    cin.tie(nullptr)->sync_with_stdio(0);
     int n; cin>>n;
     for(int i=1;i<=n;i++){
         for(int j=1;j<=n;j++){
