@@ -16,25 +16,27 @@ int main(){
         vec[v].push_back(u);
     }
 
-    int mx = 0;
+    int mx = 1;
     queue<int> qu;
     for(int i=0;i<n;i++){
-        qu.push(i);
         memset(dis,0,sizeof(dis));
+        dis[i] = 0;
+        qu.push(i);
         while(!qu.empty()){
             int u = qu.front();
             qu.pop();
             for(auto x:vec[u]){
                 if(x==i) continue;
-                if(dis[x]) continue;
+                if(dis[x] || x==i) continue;
                 dis[x] = dis[u] + 1;
                 qu.push(x);
             }
         }
-        int cnt = 0;
-        for(int j=0;j<n;j++) if(dis[j] <= k) cnt++;
+        int cnt = 1;
+        for(int j=0;j<n;j++) if(dis[j] <= k && dis[j]!=0 && i!=j) cnt++;
         // for(int j=0;j<n;j++) cout<<dis[j]<<' ';
         // cout<<'\n';
+        // cout<<cnt<<'\n';
         mx = max(mx,cnt);
     }
     cout<<mx;
